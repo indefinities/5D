@@ -1,7 +1,7 @@
 var prompts =
-    ["How are you doing?",
-        "What is the meaning of life?",
-        "How do you spend your free time?"];
+    ['How are you doing?',
+        'What is the meaning of life?',
+        'How do you spend your time?'];
 
 // getRandomInt: Nat -> Nat
 // produces random number from 0 to given Nat.
@@ -15,8 +15,4 @@ function randomPrompt(array) {
     return array[getRandomInt(array.length)]
 };
 
-function setQuestion(){
-    document.getElementById("questionHolder").placeholder = "hi";
-}
-
-console.log(randomPrompt(prompts));
+document.getElementById("questionHolder").placeholder = randomPrompt(prompts);
