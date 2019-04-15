@@ -11,11 +11,15 @@
 
 
 
-    
+
     <script>
-        var prompts = ['How are you doing?',
-            'What is the meaning of life?',
-            'How do you spend your time?'
+        var prompts = [
+            'How are you doing?',
+            'How do you spend your time?',
+            "What is something you've wanted to tell a signifigant other?",
+            'What did you do today?',
+            'What would you do if you had $1,000,000 USD?',
+            'What do you turn up at a party?'
         ];
 
         // getRandomInt: Nat -> Nat
@@ -30,7 +34,11 @@
             return array[getRandomInt(array.length)]
         };
 
+        // sets randomPrompt to be the textarea placeholder.
         document.getElementById("questionHolder").placeholder = randomPrompt(prompts);
+
+        // add user keyboard activity
+        document.addEventListener('keydown', keyLogger);
     </script>
 </body>
 
