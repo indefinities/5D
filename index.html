@@ -9,18 +9,43 @@
 <body>
     <textarea id="questionHolder" placeholder="text"></textarea>
 
-
+    <div id="imagearea"></div>
 
 
     <script>
+        // -- DEFINED CONTENT HERE! -- 
         var prompts = [
             'How are you doing?',
             'How do you spend your time?',
             "What is something you've wanted to tell a signifigant other?",
             'What did you do today?',
-            'What would you do if you had $1,000,000 USD?',
-            'What do you turn up at a party?'
+            'WHow do you usually online shop?',
+            'What do you do at parties?',
+            "What is your biggest fear?"
         ];
+
+        // each individual matrix represents a song 
+        const LYRICS = [
+            //watch out! by Rich Brian
+            ['got', 'bought', 'Amazon', 'nowhere', 'my shit', 'foreign'],
+            // Slow Dancing in the Dark by Joji
+            ['slow', 'dancing', 'dark', 'waiting', 'follow'],
+            //Chaos by Rich Brian
+            ['friend', 'legally', 'sex', 'cake', 'ignorant', 'bullshit', 'box',
+                'lock', 'camera', 'chaos'
+            ],
+            //11 Minutes by YUNGBLUD + Halsey
+            ['missed', 'sorry', 'lipstick', 'arithmetic', 'depressed', 'stupid',
+                'best', 'worst', 'sad'
+            ],
+            //Who Do You Love by The Chainsmokers and 5SOS
+            ['who', 'love', 'cigarette', 'Fendi', 'know', 'truth', 'switching']
+
+        ]
+
+        let message = '';
+        let state = 0;
+
 
         // getRandomInt: Nat -> Nat
         // produces random number from 0 to given Nat.
@@ -39,6 +64,26 @@
 
         // add user keyboard activity
         document.addEventListener('keydown', keyLogger);
+
+        function keyLogger(e) {
+
+            if (e.code === 'Backspace') {
+                message = message.substring(0, message.length - 1);
+                return;
+            }
+            // if () {
+
+            // }
+            if (e.key.length > 1)
+                return;
+            message += e.key;
+        }
+
+        // messagePrompt: String Matrix -> Boolean
+        // detects if message matches matrix with lyrics
+        function messagePrompt(message, validMatrix) {
+
+        }
     </script>
 </body>
 
