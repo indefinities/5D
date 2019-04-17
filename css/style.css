@@ -1,9 +1,9 @@
-textarea{
+textarea {
     width: 100%;
     height: 45vh;
     font-size: 36px;
     padding: 15px;
-    
+
     border: none;
     overflow: auto;
     outline: none;
@@ -12,11 +12,14 @@ textarea{
     -moz-box-shadow: none;
     box-shadow: none;
 
-    resize: none; 
+    resize: none;
 }
 
-#imgarea{
-    width: 400px;
+#imgarea img {
+    width: 800px;
     height: auto;
-    margin: 10px;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

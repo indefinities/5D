@@ -38,21 +38,15 @@
 
         // each individual matrix represents a song 
         const LYRICS = [
-            // watch out! by Rich Brian
             ['got', 'bought', 'Amazon', 'nowhere', 'my shit', 'foreign'],
-            // Slow Dancing in the Dark by Joji
-            ['slow', 'dancing', 'dark', 'waiting', 'follow'],
-            // Chaos by Rich Brian
+            ['slow', 'dance', 'dark', 'waiting', 'follow'],
             ['friend', 'legally', 'cake', 'ignorant', 'bullshit', 'box',
                 'lock', 'camera', 'chaos'
             ],
-            // 11 Minutes by YUNGBLUD + Halsey
             ['missed', 'sorry', 'lipstick', 'arithmetic', 'depressed', 'stupid',
                 'best', 'worst', 'sad'
             ],
-            // Who Do You Love by The Chainsmokers and 5SOS
             ['who', 'love', 'cigarette', 'Fendi', 'know', 'truth', 'switching'],
-            // Walk It Talk It by Migos
             ['walk', 'talk', 'tennis', 'whip', 'cook']
         ]
 
@@ -92,32 +86,21 @@
         //messagePrompt: String Matrix -> GIF
         function messagePrompt(message, validMatrix) {
             for (var i = 0; i < validMatrix.length; i++) {
-                if (messageMatrix(message, validMatrix[i], 0))
-                    return createImage(i);
+                for (var j = 0; j < validMatrix[i].length; j++) {
+                    if (message.includes(validMatrix[i][j])) {
+                        alert('content found!');
+                        return createImage(i);
+                    }
+                }
             }
-        }
-
-        // messageMatrix: String Array Nat -> Boolean
-        // Matrix that matches lyrics
-        function messageMatrix(message, innerArray, num) {
-            if (num == innerArray.length)
-                return false;
-            if (message.includes(innerArray[num]))
-                return true;
-            else {
-                num += 1;
-                messageMatrix(message, innerArray, num);
-            }
-        }
+        };
 
         function createImage(num) {
             const imgfiles = "images/";
             var img = document.createElement("img");
             img.setAttribute("src", imgfiles.concat(IMGSRC[num]));
             document.getElementById("imgarea").appendChild(img);
-        }
-
-        console.log(document.getElementById("questionHolder").value);
+        };
     </script>
 </body>
 
