@@ -7,44 +7,70 @@
 </head>
 
 <body>
-    <textarea id="questionHolder" placeholder="text"></textarea>
+    <textarea id="questionHolder"></textarea>
+    <input type="button" value="translate!" onclick="getText()" />
 
-    <div id="imagearea"></div>
+    <div id="imgarea"></div>
 
+    <!-- JAVASCRIPT HERE! -->
 
     <script>
+        // LIST OF MUSIC VIDEOS
+        // 1. watch out! by Rich Brian
+        // 2. Slow Dancing in the Dark by Joji
+        // 3. 11 Minutes by YUNGBLUD + Halsey
+        // 4. Who Do You Love by The Chainsmokers and 5SOS
+        // 5. Walk It Talk It by Migos
+
         // -- DEFINED CONTENT HERE! -- 
-        var prompts = [
+
+        var questionHolder = document.getElementById("questionHolder");
+
+        const PROMPTS = [
             'How are you doing?',
             'How do you spend your time?',
             "What is something you've wanted to tell a signifigant other?",
             'What did you do today?',
-            'WHow do you usually online shop?',
+            'How do you usually online shop?',
             'What do you do at parties?',
             "What is your biggest fear?"
         ];
 
         // each individual matrix represents a song 
         const LYRICS = [
-            //watch out! by Rich Brian
+            // watch out! by Rich Brian
             ['got', 'bought', 'Amazon', 'nowhere', 'my shit', 'foreign'],
             // Slow Dancing in the Dark by Joji
             ['slow', 'dancing', 'dark', 'waiting', 'follow'],
-            //Chaos by Rich Brian
-            ['friend', 'legally', 'sex', 'cake', 'ignorant', 'bullshit', 'box',
+            // Chaos by Rich Brian
+            ['friend', 'legally', 'cake', 'ignorant', 'bullshit', 'box',
                 'lock', 'camera', 'chaos'
             ],
-            //11 Minutes by YUNGBLUD + Halsey
+            // 11 Minutes by YUNGBLUD + Halsey
             ['missed', 'sorry', 'lipstick', 'arithmetic', 'depressed', 'stupid',
                 'best', 'worst', 'sad'
             ],
-            //Who Do You Love by The Chainsmokers and 5SOS
-            ['who', 'love', 'cigarette', 'Fendi', 'know', 'truth', 'switching']
-
+            // Who Do You Love by The Chainsmokers and 5SOS
+            ['who', 'love', 'cigarette', 'Fendi', 'know', 'truth', 'switching'],
+            // Walk It Talk It by Migos
+            ['walk', 'talk', 'tennis', 'whip', 'cook']
         ]
 
-        let message = '';
-        let state = 0;
+        // Array of image sources
+        const IMGSRC = [
+            "amazon.gif",
+            "slowdancing.gif",
+            "saltbae.gif",
+            "11minutes.gif",
+            "whodoyoulove.gif",
+            "walkittalkit.gif"
+        ];
+
+
+        function getText() {
+            var text = document.getElementById("questionHolder").value;
+            messagePrompt(text, LYRICS);
+        }
 
 
         // getRandomInt: Nat -> Nat
@@ -60,30 +86,38 @@
         };
 
         // sets randomPrompt to be the textarea placeholder.
-        document.getElementById("questionHolder").placeholder = randomPrompt(prompts);
+        questionHolder.placeholder = randomPrompt(PROMPTS);
 
-        // add user keyboard activity
-        document.addEventListener('keydown', keyLogger);
 
-        function keyLogger(e) {
-
-            if (e.code === 'Backspace') {
-                message = message.substring(0, message.length - 1);
-                return;
-            }
-            // if () {
-
-            // }
-            if (e.key.length > 1)
-                return;
-            message += e.key;
-        }
-
-        // messagePrompt: String Matrix -> Boolean
-        // detects if message matches matrix with lyrics
+        //messagePrompt: String Matrix -> GIF
         function messagePrompt(message, validMatrix) {
-
+            for (var i = 0; i < validMatrix.length; i++) {
+                if (messageMatrix(message, validMatrix[i], 0))
+                    return createImage(i);
+            }
         }
+
+        // messageMatrix: String Array Nat -> Boolean
+        // Matrix that matches lyrics
+        function messageMatrix(message, innerArray, num) {
+            if (num == innerArray.length)
+                return false;
+            if (message.includes(innerArray[num]))
+                return true;
+            else {
+                num += 1;
+                messageMatrix(message, innerArray, num);
+            }
+        }
+
+        function createImage(num) {
+            const imgfiles = "images/";
+            var img = document.createElement("img");
+            img.setAttribute("src", imgfiles.concat(IMGSRC[num]));
+            document.getElementById("imgarea").appendChild(img);
+        }
+
+        console.log(document.getElementById("questionHolder").value);
     </script>
 </body>
 
