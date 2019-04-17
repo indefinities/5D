@@ -2,11 +2,12 @@
 <html>
 
 <head>
-    <title>home.</title>
+    <title>welcome home.</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+    <h1>translate your life into music videos!</h1>
     <textarea id="questionHolder"></textarea>
     <input type="button" value="translate!" onclick="getText()" />
 
@@ -33,21 +34,24 @@
             'What did you do today?',
             'How do you usually online shop?',
             'What do you do at parties?',
-            "What is your biggest fear?"
+            "What's your biggest fear?"
         ];
 
         // each individual matrix represents a song 
         const LYRICS = [
-            ['got', 'bought', 'Amazon', 'nowhere', 'my shit', 'foreign'],
+            ['got', 'bought', 'buy', 'Amazon', 'nowhere', 'shit', 'foreign'],
             ['slow', 'dance', 'dark', 'waiting', 'follow'],
             ['friend', 'legally', 'cake', 'ignorant', 'bullshit', 'box',
                 'lock', 'camera', 'chaos'
             ],
-            ['missed', 'sorry', 'lipstick', 'arithmetic', 'depressed', 'stupid',
-                'best', 'worst', 'sad'
+            ['miss', 'missed', 'sorry', 'lipstick', 'arithmetic', 'depressed', 'stupid',
+                'best', 'worst', 'sad', 'read', 'away', 'depressed', 'down'
             ],
             ['who', 'love', 'cigarette', 'Fendi', 'know', 'truth', 'switching'],
-            ['walk', 'talk', 'tennis', 'whip', 'cook']
+            ['walk', 'talk', 'tennis', 'whip', 'cook'],
+            ['sleeping', 'animal', 'mad', 'bad', 'guy', 'tough', 'rough'],
+            ['too', 'good', 'lost', 'patience', 'okay'],
+            ['crazy', 'baby', 'daily', 'love', "can't", 'get', 'enough']
         ]
 
         // Array of image sources
@@ -57,7 +61,10 @@
             "saltbae.gif",
             "11minutes.gif",
             "whodoyoulove.gif",
-            "walkittalkit.gif"
+            "walkittalkit.gif",
+            "badguy.gif",
+            "toogood.gif",
+            "cantgetenough.gif"
         ];
 
 
@@ -88,7 +95,6 @@
             for (var i = 0; i < validMatrix.length; i++) {
                 for (var j = 0; j < validMatrix[i].length; j++) {
                     if (message.includes(validMatrix[i][j])) {
-                        alert('content found!');
                         return createImage(i);
                     }
                 }
